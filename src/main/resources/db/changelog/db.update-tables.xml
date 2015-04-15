@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="changelog-update-1" author="Sudheer">
+        <dropColumn tableName="EMPLOYEE" columnName="active" />
+    </changeSet>
+
+    <changeSet id="changelog-update-2" author="Sudheer">
+    <addColumn tableName="EMPLOYEE">
+        <column name="gender" type="varchar2(10)">
+            <constraints nullable="false" />
+        </column>
+    </addColumn>
+    </changeSet>
+    
+    <changeSet id="changelog-update-3" author="Sudheer">
+        <renameColumn tableName="EMPLOYEE" oldColumnName="empName" newColumnName="employee_name" columnDataType="varchar2(100)" />
+    </changeSet>
+
+
+
+ </databaseChangeLog>

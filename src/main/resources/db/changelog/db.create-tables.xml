@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="changelog-table-1" author="Sudheer" >
+        <createTable tableName="EMPLOYEE">
+            <column name="id" type="int" startWith="1000" incrementBy="1" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="empName" type="varchar2(100)" remarks="Employee name">
+                <constraints nullable="false" />
+            </column>
+            <column name="active" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="changelog-table-2" author="Sudheer">
+        <createTable tableName="DEPARTMENT">
+            <column name="id" type="int" autoIncrement="true" startWith="100" incrementBy="1">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar2(100)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="changelog-table-3" author="Sudheer">
+        <addColumn tableName="EMPLOYEE">
+            <column name="deptID" type="int">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="EMPLOYEE" baseColumnNames="deptID"
+                                 constraintName="fk_employee_department" referencedTableName="DEPARTMENT"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="RESTRICT"/>
+
+    </changeSet>
+
+    <changeSet id="changelog-table-4" author="Sudheer">
+        <createTable tableName="LOCATIONS">
+            <column name="id" type="int" autoIncrement="true" startWith="10" incrementBy="1">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar2(100)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="changelog-table-5" author="Sudheer" >
+        <insert tableName="LOCATIONS">
+            <column name="name">HO</column>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="name">H2</column>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="name">H6</column>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="name">H9</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="changelog-table-6" author="Sudheer">
+        <insert tableName="DEPARTMENT">
+            <column name="name">SD</column>
+        </insert>
+        <insert tableName="DEPARTMENT">
+            <column name="name">HR</column>
+        </insert>
+        <insert tableName="DEPARTMENT">
+            <column name="name">IT</column>
+        </insert>
+        <insert tableName="DEPARTMENT">
+            <column name="name">QA</column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>
